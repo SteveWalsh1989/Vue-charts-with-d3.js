@@ -78,7 +78,7 @@ onMounted(() => {
     .attr('y', (d) => y(d.billable))
     .attr('width', 15)
     .attr('height', (d) => height - y(d.billable))
-    .attr('rx', 8)
+    .attr('rx', 4)
     .attr('fill', '#1976D2');
 
   const nonBillableBars = svg
@@ -91,7 +91,7 @@ onMounted(() => {
     .attr('y', (d) => y(d.nonBillable))
     .attr('width', 15)
     .attr('height', (d) => height - y(d.nonBillable))
-    .attr('rx', 8)
+    .attr('rx', 4)
     .attr('fill', '#CFD8DC');
 
   const billedBars = svg
@@ -104,7 +104,7 @@ onMounted(() => {
     .attr('y', (d) => y(d.billed))
     .attr('width', 15)
     .attr('height', (d) => height - y(d.billed))
-    .attr('rx', 8)
+    .attr('rx', 4)
     .attr('fill', '#EC407A');
 
   // creating the custom part of date x-axis

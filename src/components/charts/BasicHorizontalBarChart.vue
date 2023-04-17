@@ -2,8 +2,6 @@
 import { onMounted, ref } from 'vue';
 import * as d3 from 'd3';
 
-
-
 const chart = ref(null);
 
 // sample data for now
@@ -18,7 +16,7 @@ const data = [
 onMounted(() => {
   const width = 650;
   const height = 400;
-  const margin = { top: 20, right: 20, bottom: 30, left: 160 };
+  const margin = { top: 20, right: 80, bottom: 30, left: 160 };
 
   const y = d3
     .scaleBand()
@@ -55,7 +53,7 @@ onMounted(() => {
     .join('text')
     .attr('class', 'value')
     .attr('y', (d) => y(d.label) + y.bandwidth() / 2)
-    .attr('x', (d) => x(0) - 10) 
+    .attr('x', (d) => x(0) - 10)
     .attr('text-anchor', 'start')
     .attr('fill', 'white')
     .attr('dominant-baseline', 'middle')
@@ -76,8 +74,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <section>
-    <div class="flex-col text-center">
+  <section class="flex w-[800px] mx-auto">
+    <div class="flex-col text-center border border-solid rounded">
       <h2>D3.js - bar chart</h2>
       <div ref="chart"></div>
     </div>

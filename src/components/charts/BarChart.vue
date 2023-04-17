@@ -2,7 +2,6 @@
 import { onMounted, ref } from 'vue';
 import * as d3 from 'd3';
 
-
 const chart = ref(null);
 
 const data = [
@@ -18,12 +17,11 @@ const data = [
   { date: '2023-04-10', billable: 1100, nonBillable: 500, billed: 900 },
 ];
 
-
 // taken from other project just for date formatting here
 function getOrdinalSuffix(day) {
   const suffixes = ['th', 'st', 'nd', 'rd'];
-  const relevantDigits = (day < 30) ? day % 20 : day % 30;
-  const suffixIndex = (relevantDigits <= 3) ? relevantDigits : 0;
+  const relevantDigits = day < 30 ? day % 20 : day % 30;
+  const suffixIndex = relevantDigits <= 3 ? relevantDigits : 0;
   return suffixes[suffixIndex];
 }
 function formatDate(dateString) {
@@ -34,7 +32,6 @@ function formatDate(dateString) {
   const formattedDate = `${day}${getOrdinalSuffix(day)} ${month}`;
   return formattedDate;
 }
-
 
 // building up the chart
 onMounted(() => {
@@ -56,30 +53,26 @@ onMounted(() => {
     .domain(data.map((d) => d.date))
     .padding(0.1);
 
-
   // creating the amount y-axis
   const billableData = data.map((d) => d.billable);
   const nonBillableData = data.map((d) => d.nonBillable);
   const maxY = d3.max([...billableData, ...nonBillableData]);
   const yTicks = 4;
 
-  const y = d3
-    .scaleLinear()
-    .domain([0, maxY])
-    .range([height, 0])
-    .nice(yTicks);
+  const y = d3.scaleLinear().domain([0, maxY]).range([height, 0]).nice(yTicks);
 
-  const yAxis = d3.axisLeft(y)
-    .tickSize(0)
-    .ticks(yTicks)
-
+  const yAxis = d3.axisLeft(y).tickSize(0).ticks(yTicks);
 
   const yAxisGroup = svg.append('g').call(yAxis);
 
   yAxisGroup.select('.domain').remove();
 
-  // main stuff to create the bars and set width/ positions n such 
-  const billableBars = svg.selectAll('.billable').data(data).enter().append('rect')
+  // main stuff to create the bars and set width/ positions n such
+  const billableBars = svg
+    .selectAll('.billable')
+    .data(data)
+    .enter()
+    .append('rect')
     .attr('class', 'billable')
     .attr('x', (d) => x(d.date))
     .attr('y', (d) => y(d.billable))
@@ -87,7 +80,11 @@ onMounted(() => {
     .attr('height', (d) => height - y(d.billable))
     .attr('fill', '#1976D2');
 
-  const nonBillableBars = svg.selectAll('.nonbillable').data(data).enter().append('rect')
+  const nonBillableBars = svg
+    .selectAll('.nonbillable')
+    .data(data)
+    .enter()
+    .append('rect')
     .attr('class', 'nonbillable')
     .attr('x', (d) => x(d.date) + x.bandwidth() / 2 + 1)
     .attr('y', (d) => y(d.nonBillable))
@@ -95,7 +92,8 @@ onMounted(() => {
     .attr('height', (d) => height - y(d.nonBillable))
     .attr('fill', '#CFD8DC');
 
-  const billedBars = svg.selectAll('.billed')
+  const billedBars = svg
+    .selectAll('.billed')
     .data(data)
     .enter()
     .append('rect')
@@ -106,23 +104,23 @@ onMounted(() => {
     .attr('height', (d) => height - y(d.billed))
     .attr('fill', '#EC407A');
 
-
   // creating the custom part of date x-axis
-  const xAxis = d3.axisBottom(x)
+  const xAxis = d3
+    .axisBottom(x)
     .tickSize(0)
     .tickFormat((d) => formatDate(d));
 
-  const xAxisGroup = svg.append('g').attr('transform', `translate(0,${height + margin.top})`).call(xAxis);
+  const xAxisGroup = svg
+    .append('g')
+    .attr('transform', `translate(0,${height + margin.top})`)
+    .call(xAxis);
   xAxisGroup.select('.domain').remove();
-
-
-
 });
 </script>
 
 <template>
-  <section>
-    <div class="flex-col text-center align-middle">
+  <section class="flex">
+    <div class="flex-col text-center mx-auto border border-solid rounded">
       <h2>D3.js - column and overlayed bar chart</h2>
       <div ref="chart"></div>
     </div>

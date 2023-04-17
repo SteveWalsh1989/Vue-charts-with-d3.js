@@ -14,7 +14,7 @@ const data = [
 onMounted(() => {
   const width = 650;
   const height = 400;
-  const margin = { top: 20, right: 20, bottom: 70, left: 40 };
+  const margin = { top: 20, right: 60, bottom: 90, left: 20 };
   const borderRadius = 8;
 
   const x = d3
@@ -33,11 +33,9 @@ onMounted(() => {
     .select(chart.value)
     .append('svg')
     .attr('width', width)
-    .attr('height', height);
-
-  svg
+    .attr('height', height)
     .append('g')
-    .attr('transform', `translate(0,${height - margin.bottom})`)
+    .attr('transform', `translate(${margin.left},${margin.top})`);
 
   // Needs paths if we want the nice border radius, otherwise could use rect
   svg
@@ -91,7 +89,7 @@ onMounted(() => {
     .join('text')
     .attr('class', 'value')
     .attr('x', (d) => x(d.label) + x.bandwidth() / 2)
-    .attr('y', height - margin.bottom + 30) 
+    .attr('y', height - margin.bottom + 30)
     .attr('text-anchor', 'middle')
     .attr('fill', 'white')
     .text((d) => d.value);
@@ -102,7 +100,7 @@ onMounted(() => {
     .join('text')
     .attr('class', 'label')
     .attr('x', (d) => x(d.label) + x.bandwidth() / 2)
-    .attr('y', height - margin.bottom + 55) 
+    .attr('y', height - margin.bottom + 55)
     .attr('text-anchor', 'middle')
     .attr('fill', 'white')
     .text((d) => d.label);
@@ -110,8 +108,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <section>
-    <div class="flex-col text-center align-middle">
+  <section class="flex w-[800px] mx-auto">
+    <div class="flex-col text-center mx-auto border border-solid rounded">
       <h2>D3.js - bar chart</h2>
       <div ref="chart"></div>
     </div>

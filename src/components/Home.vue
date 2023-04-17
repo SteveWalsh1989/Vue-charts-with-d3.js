@@ -20,7 +20,7 @@ const links = [
 
 <template>
   <div>
-    <div class="mx-4 my-12">
+    <div class="mx-4 my-12 text-center">
       <router-link
         v-for="link in links"
         :key="link.id"

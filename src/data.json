@@ -1,0 +1,44 @@
+{
+  "data": {
+    "categories": [
+      {
+        "id": "u1",
+        "name": "Richard Hendricks",
+        "forums": ["f1"]
+      }
+    ],
+    "forums": [
+      {
+        "id": "f1",
+        "name": "cool stuff",
+        "description": "Pied Piper",
+        "categoryId": "c1",
+        "threads": ["t1"]
+      }
+    ],
+    "users": [
+      {
+        "id": "u1",
+        "name": "Richard Hendricks"
+      }
+    ],
+    "threads": [
+      {
+        "id": "t1",
+        "title": "Hello World",
+        "publishedAt": 1681681861,
+        "posts": [],
+        "userId": ""
+      }
+    ],
+    "posts": [
+      {
+        "id": 1,
+        "text": "Hello World",
+        "publishedAt": 1681681861,
+        "userId": "u1",
+        "threadId": "t1"
+      }
+    ]
+  }
+}

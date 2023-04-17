@@ -33,6 +33,25 @@ function formatDate(dateString) {
   return formattedDate;
 }
 
+function getTooltip(data) {
+  return `
+  <div class="flex flex-col">
+    <div class="flex" > 
+      <span class="text-left mr-8">Billable:</span>
+      <span class="ml-auto">${data.billable}</span>
+    </div> 
+    <div class="flex" >  
+      <span class="text-left mr-8">Billed:</span>
+      <span class="ml-auto">${data.billed}</span>
+    </div> 
+    <div class="flex" >  
+      <span class="text-left mr-8">NonBillable:</span>
+      <span class="ml-auto">${data.nonBillable}</span>
+    </div> 
+  </div>
+  `;
+}
+
 // building up the chart
 onMounted(() => {
   const margin = { top: 10, right: 30, bottom: 30, left: 60 };
@@ -79,7 +98,21 @@ onMounted(() => {
     .attr('width', 15)
     .attr('height', (d) => height - y(d.billable))
     .attr('rx', 4)
-    .attr('fill', '#1976D2');
+    .attr('fill', '#1976D2')
+    .on('mouseover', (event, d) => {
+      const tooltip = d3.select('#tooltip');
+      tooltip
+        .html(getTooltip(d))
+        .style('opacity', 1)
+        .style('background', 'white')
+        .style('color', 'black')
+        .style('left', `${event.pageX}px`)
+        .style('top', `${event.pageY}px`);
+    })
+    .on('mouseout', () => {
+      const tooltip = d3.select('#tooltip');
+      tooltip.style('opacity', 0);
+    });
 
   const nonBillableBars = svg
     .selectAll('.nonbillable')
@@ -92,8 +125,21 @@ onMounted(() => {
     .attr('width', 15)
     .attr('height', (d) => height - y(d.nonBillable))
     .attr('rx', 4)
-    .attr('fill', '#CFD8DC');
-
+    .attr('fill', '#CFD8DC')
+    .on('mouseover', (event, d) => {
+      const tooltip = d3.select('#tooltip');
+      tooltip
+        .html(getTooltip(d))
+        .style('opacity', 1)
+        .style('background', 'white')
+        .style('color', 'black')
+        .style('left', `${event.pageX}px`)
+        .style('top', `${event.pageY}px`);
+    })
+    .on('mouseout', () => {
+      const tooltip = d3.select('#tooltip');
+      tooltip.style('opacity', 0);
+    });
   const billedBars = svg
     .selectAll('.billed')
     .data(data)
@@ -105,7 +151,21 @@ onMounted(() => {
     .attr('width', 15)
     .attr('height', (d) => height - y(d.billed))
     .attr('rx', 4)
-    .attr('fill', '#EC407A');
+    .attr('fill', '#EC407A')
+    .on('mouseover', (event, d) => {
+      const tooltip = d3.select('#tooltip');
+      tooltip
+        .html(getTooltip(d))
+        .style('opacity', 1)
+        .style('background', 'white')
+        .style('color', 'black')
+        .style('left', `${event.pageX}px`)
+        .style('top', `${event.pageY}px`);
+    })
+    .on('mouseout', () => {
+      const tooltip = d3.select('#tooltip');
+      tooltip.style('opacity', 0);
+    });
 
   // creating the custom part of date x-axis
   const xAxis = d3
@@ -126,6 +186,7 @@ onMounted(() => {
     <div class="flex-col text-center mx-auto border border-solid rounded">
       <h2>D3.js - column and overlayed bar chart</h2>
       <div ref="chart"></div>
+      <div id="tooltip" style="position: absolute; opacity: 0"></div>
     </div>
   </section>
 </template>

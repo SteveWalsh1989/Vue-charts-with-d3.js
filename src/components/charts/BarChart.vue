@@ -18,6 +18,25 @@ const data = [
   { date: '2023-04-10', billable: 1100, nonBillable: 500 },
 ];
 
+
+// taken from other project just for date formatting here
+function getOrdinalSuffix(day) {
+  const suffixes = ['th', 'st', 'nd', 'rd'];
+  const relevantDigits = (day < 30) ? day % 20 : day % 30;
+  const suffixIndex = (relevantDigits <= 3) ? relevantDigits : 0;
+  return suffixes[suffixIndex];
+}
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const options = { month: 'long' };
+  const month = date.toLocaleDateString('en-US', options);
+  const formattedDate = `${day}${getOrdinalSuffix(day)} ${month}`;
+  return formattedDate;
+}
+
+
+// building up the chart
 onMounted(() => {
   const margin = { top: 10, right: 30, bottom: 30, left: 60 };
   const width = 800 - margin.left - margin.right;
@@ -46,7 +65,8 @@ onMounted(() => {
   y.domain([0, maxY]);
 
   const xAxis = d3.axisBottom(x)
-    .tickSize(0);
+    .tickSize(0)
+    .tickFormat((d) => formatDate(d));
 
 const billableBars = svg.selectAll('.billable').data(data).enter().append('rect')
     .attr('class', 'billable')
@@ -68,7 +88,7 @@ const nonBillableBars = svg.selectAll('.nonbillable').data(data).enter().append(
   const barGroupWidth = x.bandwidth() / 2;
   const barGroupPadding = x.bandwidth() * 0.1;
   const barWidth = barGroupWidth - barGroupPadding;  
-  const xAxisGroup = svg.append('g').attr('transform', `translate(0,${height})`).call(xAxis);
+  const xAxisGroup = svg.append('g').attr('transform', `translate(0,${height + margin.top})`).call(xAxis);
 
   xAxisGroup.select('.domain').remove();
 });

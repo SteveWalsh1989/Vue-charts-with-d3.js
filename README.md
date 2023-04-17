@@ -15,7 +15,7 @@ Chart files can be found within src/components/charts/
 
 ![Screenshot 2023-04-17 at 20 26 22](https://user-images.githubusercontent.com/13380603/232590589-11dfebcd-38b8-4661-8bec-36d65893e48d.png)
 
-![Screenshot 2023-04-17 at 22 21 14](https://user-images.githubusercontent.com/13380603/232613585-206219a4-5d23-4bfd-8997-d7e91947dfe2.png)
+![Screenshot 2023-04-17 at 22 50 41](https://user-images.githubusercontent.com/13380603/232618657-7c65c133-b314-4646-9f90-a021c4bd9f47.png)
 
 
 # Setup 

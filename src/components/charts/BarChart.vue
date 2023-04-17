@@ -100,9 +100,9 @@ onMounted(() => {
     .enter()
     .append('rect')
     .attr('class', 'billed')
-    .attr('x', (d) => x(d.date) + x.bandwidth() / 14)
+    .attr('x', (d) => x(d.date) + x.bandwidth() / 1000)
     .attr('y', (d) => y(d.billed))
-    .attr('width', x.bandwidth() / 2 * 0.6)
+    .attr('width', x.bandwidth() / 2 - 5)
     .attr('height', (d) => height - y(d.billed))
     .attr('fill', '#EC407A');
 

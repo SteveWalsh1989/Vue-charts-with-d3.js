@@ -36,28 +36,28 @@ function formatDate(dateString) {
 function getTooltip(data) {
   return `
   <div class="flex flex-col p-2 border rounded">
-    <div class="flex items-center" > 
+    <div class="flex items-center" >
       <div class="w-2 h-2 rounded-full bg-[#1976D2] mr-2"></div>
       <span class="text-left mr-8">Billable:</span>
       <span class="ml-auto">${data.billable}</span>
-    </div> 
-    <div class="flex items-center" > 
+    </div>
+    <div class="flex items-center" >
       <div class="w-2 h-2 rounded-full bg-[#EC407A] mr-2"></div>
       <span class="text-left mr-8">Billed:</span>
       <span class="ml-auto">${data.billed}</span>
-    </div> 
-    <div class="flex items-center" > 
+    </div>
+    <div class="flex items-center" >
       <div class="w-2 h-2 rounded-full bg-[#CFD8DC] mr-2"></div>
       <span class="text-left mr-8">NonBillable:</span>
       <span class="ml-auto">${data.nonBillable}</span>
-    </div> 
+    </div>
   </div>
   `;
 }
 
 // building up the chart
 onMounted(() => {
-  const margin = { top: 10, right: 30, bottom: 30, left: 60 };
+  const margin = { top: 10, right: 60, bottom: 30, left: 30 };
   const width = 800 - margin.left - margin.right;
   const height = 400 - margin.top - margin.bottom;
 
@@ -81,11 +81,18 @@ onMounted(() => {
   const maxY = d3.max([...billableData, ...nonBillableData]);
   const yTicks = 4;
 
-  const y = d3.scaleLinear().domain([0, maxY]).range([height, 0]).nice(yTicks);
+  const y = d3.scaleLinear().domain([maxY, 0]).range([0, height]).nice(yTicks);
 
-  const yAxis = d3.axisLeft(y).tickSize(0).ticks(yTicks);
+  const yAxis = d3
+    .axisRight(y)
+    .tickSizeInner(-width + margin.left + margin.right - 65)
+    .tickSizeOuter(0)
+    .ticks(yTicks);
 
-  const yAxisGroup = svg.append('g').call(yAxis);
+  const yAxisGroup = svg
+    .append('g')
+    .call(yAxis)
+    .attr('transform', `translate(${width - margin.right + 50},0)`);
 
   yAxisGroup.select('.domain').remove();
 
@@ -187,7 +194,7 @@ onMounted(() => {
 <template>
   <section class="flex">
     <div class="flex-col text-center mx-auto border border-solid rounded">
-      <h2>D3.js - column and overlayed bar chart</h2>
+      <h2 class="my-4">D3.js - column and overlayed bar chart</h2>
       <div ref="chart"></div>
       <div id="tooltip" style="position: absolute; opacity: 0"></div>
     </div>

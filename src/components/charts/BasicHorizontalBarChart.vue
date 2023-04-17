@@ -44,7 +44,9 @@ onMounted(() => {
     .attr('x', (d) => x(5))
     .attr('width', (d) => x(d.value) - x(0))
     .attr('height', y.bandwidth())
-    .attr('fill', (d) => d.color);
+    .attr('fill', (d) => d.color)
+    .attr('rx', 8)
+    .attr('height', 15);
 
   // Add data.value text on the left of the bars
   svg
@@ -52,7 +54,7 @@ onMounted(() => {
     .data(data)
     .join('text')
     .attr('class', 'value')
-    .attr('y', (d) => y(d.label) + y.bandwidth() / 2)
+    .attr('y', (d) => y(d.label) + y.bandwidth() / 6)
     .attr('x', (d) => x(0) - 10)
     .attr('text-anchor', 'start')
     .attr('fill', 'white')
@@ -64,7 +66,7 @@ onMounted(() => {
     .data(data)
     .join('text')
     .attr('class', 'label')
-    .attr('y', (d) => y(d.label) + y.bandwidth() / 2)
+    .attr('y', (d) => y(d.label) + y.bandwidth() / 6)
     .attr('x', (d) => x(0) - 120) // Adjust this value to position the text to the left of the data.value text
     .attr('text-anchor', 'start')
     .attr('fill', 'white')

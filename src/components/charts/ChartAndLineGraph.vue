@@ -33,35 +33,35 @@ const data = [
     leftOvers: 800,
     goneOff: 300,
     eaten: 500,
-    capacity: 800,
+    capacity: 700,
   },
   {
     date: '2023-04-07',
     leftOvers: 800,
     goneOff: 350,
     eaten: 600,
-    capacity: 800,
+    capacity: 700,
   },
   {
     date: '2023-04-08',
     leftOvers: 1000,
     goneOff: 400,
     eaten: 0,
-    capacity: 800,
+    capacity: 700,
   },
   {
     date: '2023-04-09',
     leftOvers: 350,
     goneOff: 450,
     eaten: 50,
-    capacity: 800,
+    capacity: 700,
   },
   {
     date: '2023-04-10',
     leftOvers: 600,
     goneOff: 500,
     eaten: 150,
-    capacity: 800,
+    capacity: 700,
   },
 ];
 
@@ -122,6 +122,19 @@ onMounted(() => {
 
   yAxisGroup.select('.domain').remove();
 
+  // add in line graph
+  const capacityData = data.map((d) => d.capacity);
+  const maxCapacity = d3.max(capacityData);
+  const capacityY = d3
+    .scaleLinear()
+    .domain([0, maxCapacity])
+    .range([height, 0])
+    .nice(yTicks);
+  const capacityLine = d3
+    .line()
+    .x((d) => x(d.date) + x.bandwidth() / 2 + 1)
+    .y((d) => capacityY(d.capacity));
+
   // main stuff to create the bars and set width/ positions n such
   const leftOversBars = svg
     .selectAll('.leftOvers')
@@ -165,9 +178,10 @@ onMounted(() => {
     .append('path')
     .datum(data)
     .attr('fill', 'none')
-    .attr('stroke', 'red')
-    .attr('stroke-width', 2);
-
+    .attr('stroke', 'green')
+    .attr('stroke-dasharray', '5 5')
+    .attr('stroke-width', 2)
+    .attr('d', capacityLine);
   // creating the custom part of date x-axis
   const xAxis = d3
     .axisBottom(x)

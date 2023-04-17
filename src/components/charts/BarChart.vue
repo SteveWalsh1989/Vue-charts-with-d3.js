@@ -6,16 +6,16 @@ import * as d3 from 'd3';
 const chart = ref(null);
 
 const data = [
-  { date: '2023-04-01', billable: 200, nonBillable: 50 },
-  { date: '2023-04-02', billable: 300, nonBillable: 100 },
-  { date: '2023-04-03', billable: 400, nonBillable: 150 },
-  { date: '2023-04-04', billable: 500, nonBillable: 200 },
-  { date: '2023-04-05', billable: 600, nonBillable: 250 },
-  { date: '2023-04-06', billable: 700, nonBillable: 300 },
-  { date: '2023-04-07', billable: 800, nonBillable: 350 },
-  { date: '2023-04-08', billable: 900, nonBillable: 400 },
-  { date: '2023-04-09', billable: 1000, nonBillable: 450 },
-  { date: '2023-04-10', billable: 1100, nonBillable: 500 },
+  { date: '2023-04-01', billable: 200, nonBillable: 50, billed: 100 },
+  { date: '2023-04-02', billable: 300, nonBillable: 100, billed: 200 },
+  { date: '2023-04-03', billable: 400, nonBillable: 150, billed: 0 },
+  { date: '2023-04-04', billable: 500, nonBillable: 200, billed: 0 },
+  { date: '2023-04-05', billable: 600, nonBillable: 250, billed: 400 },
+  { date: '2023-04-06', billable: 700, nonBillable: 300, billed: 500 },
+  { date: '2023-04-07', billable: 800, nonBillable: 350, billed: 600 },
+  { date: '2023-04-08', billable: 900, nonBillable: 400, billed: 0 },
+  { date: '2023-04-09', billable: 1000, nonBillable: 450, billed: 800 },
+  { date: '2023-04-10', billable: 1100, nonBillable: 500, billed: 900 },
 ];
 
 
@@ -58,28 +58,28 @@ onMounted(() => {
 
 
 
-// creating the amount axis
-const billableData = data.map((d) => d.billable);
-const nonBillableData = data.map((d) => d.nonBillable);
-const maxY = d3.max([...billableData, ...nonBillableData]);
-const yTicks = 4;
+  // creating the amount axis
+  const billableData = data.map((d) => d.billable);
+  const nonBillableData = data.map((d) => d.nonBillable);
+  const maxY = d3.max([...billableData, ...nonBillableData]);
+  const yTicks = 4;
 
-const y = d3
-  .scaleLinear()
-  .domain([0, maxY])
-  .range([height, 0])
-  .nice(yTicks);
+  const y = d3
+    .scaleLinear()
+    .domain([0, maxY])
+    .range([height, 0])
+    .nice(yTicks);
 
-const yAxis = d3.axisLeft(y)
-  .tickSize(0)
-  .ticks(yTicks)
+  const yAxis = d3.axisLeft(y)
+    .tickSize(0)
+    .ticks(yTicks)
 
 
-const yAxisGroup = svg.append('g').call(yAxis);
+  const yAxisGroup = svg.append('g').call(yAxis);
 
-yAxisGroup.select('.domain').remove();
+  yAxisGroup.select('.domain').remove();
 
-const billableBars = svg.selectAll('.billable').data(data).enter().append('rect')
+  const billableBars = svg.selectAll('.billable').data(data).enter().append('rect')
     .attr('class', 'billable')
     .attr('x', (d) => x(d.date))
     .attr('y', (d) => y(d.billable))
@@ -87,13 +87,24 @@ const billableBars = svg.selectAll('.billable').data(data).enter().append('rect'
     .attr('height', (d) => height - y(d.billable))
     .attr('fill', '#1976D2');
 
-const nonBillableBars = svg.selectAll('.nonbillable').data(data).enter().append('rect')
+  const nonBillableBars = svg.selectAll('.nonbillable').data(data).enter().append('rect')
     .attr('class', 'nonbillable')
     .attr('x', (d) => x(d.date) + x.bandwidth() / 2 + 1)
     .attr('y', (d) => y(d.nonBillable))
     .attr('width', x.bandwidth() / 2 - 5)
     .attr('height', (d) => height - y(d.nonBillable))
     .attr('fill', '#CFD8DC');
+
+  const billedBars = svg.selectAll('.billed')
+    .data(data)
+    .enter()
+    .append('rect')
+    .attr('class', 'billed')
+    .attr('x', (d) => x(d.date) + x.bandwidth() / 14)
+    .attr('y', (d) => y(d.billed))
+    .attr('width', x.bandwidth() / 2 * 0.6)
+    .attr('height', (d) => height - y(d.billed))
+    .attr('fill', '#EC407A');
 
 
   // creating the date axis

@@ -57,13 +57,6 @@ const data = [
   },
 ];
 
-// taken from other project just for date formatting here
-function getOrdinalSuffix(day) {
-  const suffixes = ['th', 'st', 'nd', 'rd'];
-  const relevantDigits = day < 30 ? day % 20 : day % 30;
-  const suffixIndex = relevantDigits <= 3 ? relevantDigits : 0;
-  return suffixes[suffixIndex];
-}
 function formatDate(dateString) {
   const date = new Date(dateString);
   const month = date.toLocaleString('en-US', { month: 'short' });

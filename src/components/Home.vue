@@ -15,6 +15,11 @@ const links = [
     title: 'Vertical Bar Chart',
     link: '/bar-chart',
   },
+  {
+    id: 4,
+    title: 'Bar chart with line graph',
+    link: '/chart-with-line-graph',
+  },
 ];
 </script>
 

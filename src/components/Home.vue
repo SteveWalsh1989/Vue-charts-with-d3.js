@@ -2,17 +2,17 @@
 const links = [
   {
     id: 1,
-    title: 'Vertical Bar Chart',
+    title: 'Basic Vertical Bar Chart',
     link: '/vertical-bar-chart',
   },
   {
     id: 2,
-    title: 'Horizontal Bar Chart',
+    title: 'Basic Horizontal Bar Chart',
     link: '/horizontal-bar-chart',
   },
   {
     id: 3,
-    title: 'Bar Chart',
+    title: 'Complex Vertical Bar Chart',
     link: '/bar-chart',
   },
 ];

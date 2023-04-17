@@ -123,7 +123,7 @@ onMounted(() => {
 <template>
   <section>
     <div class="flex-col text-center align-middle">
-      <h2>D3.js - bar chart</h2>
+      <h2>D3.js - column and overlayed bar chart</h2>
       <div ref="chart"></div>
     </div>
   </section>

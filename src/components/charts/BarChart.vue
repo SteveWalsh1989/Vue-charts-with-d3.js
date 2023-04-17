@@ -35,16 +35,19 @@ function formatDate(dateString) {
 
 function getTooltip(data) {
   return `
-  <div class="flex flex-col">
-    <div class="flex" > 
+  <div class="flex flex-col p-2 border rounded">
+    <div class="flex items-center" > 
+      <div class="w-2 h-2 rounded-full bg-[#1976D2] mr-2"></div>
       <span class="text-left mr-8">Billable:</span>
       <span class="ml-auto">${data.billable}</span>
     </div> 
-    <div class="flex" >  
+    <div class="flex items-center" > 
+      <div class="w-2 h-2 rounded-full bg-[#EC407A] mr-2"></div>
       <span class="text-left mr-8">Billed:</span>
       <span class="ml-auto">${data.billed}</span>
     </div> 
-    <div class="flex" >  
+    <div class="flex items-center" > 
+      <div class="w-2 h-2 rounded-full bg-[#CFD8DC] mr-2"></div>
       <span class="text-left mr-8">NonBillable:</span>
       <span class="ml-auto">${data.nonBillable}</span>
     </div> 

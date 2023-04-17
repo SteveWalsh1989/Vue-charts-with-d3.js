@@ -6,7 +6,8 @@ Chart files can be found within src/components/charts/
 
 # examples
 
-![Screenshot 2023-04-17 at 21 29 05](https://user-images.githubusercontent.com/13380603/232602981-30f1446b-f830-4cf1-90ff-ebd32e8783a1.png)
+
+![Screenshot 2023-04-17 at 21 49 57](https://user-images.githubusercontent.com/13380603/232607664-cf9a8b31-4a24-4265-8325-d49ccea6a227.png)
 
 
 

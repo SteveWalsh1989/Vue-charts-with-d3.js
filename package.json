@@ -1,5 +1,5 @@
 {
-  "name": "vite-test-project",
+  "name": "vue-charts-with-d3",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,8 +7,6 @@
     "dev": "vite",
     "build": " export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service vite build",
     "preview": "vite preview",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
     "serve": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
     "lint": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service lint"
   },
@@ -23,13 +21,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
-    "@storybook/addon-actions": "^6.5.16",
-    "@storybook/addon-essentials": "^6.5.16",
-    "@storybook/addon-interactions": "^6.5.16",
-    "@storybook/addon-links": "^6.5.16",
-    "@storybook/builder-vite": "^0.4.2",
-    "@storybook/testing-library": "^0.0.13",
-    "@storybook/vue3": "^6.5.16",
     "@vitejs/plugin-vue": "^4.0.0",
     "autoprefixer": "^10.4.13",
     "babel-loader": "^8.3.0",

@@ -32,7 +32,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  document.title = `Playground: ${to.name}`;
+  document.title = `Charts: ${to.name}`;
   next();
 });
 

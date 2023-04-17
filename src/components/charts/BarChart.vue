@@ -54,7 +54,7 @@ const billableBars = svg.selectAll('.billable').data(data).enter().append('rect'
     .attr('y', (d) => y(d.billable))
     .attr('width', x.bandwidth() / 2 - 5)
     .attr('height', (d) => height - y(d.billable))
-    .attr('fill', '#2196F3');
+    .attr('fill', '#1976D2');
 
 const nonBillableBars = svg.selectAll('.nonbillable').data(data).enter().append('rect')
     .attr('class', 'nonbillable')
@@ -69,13 +69,6 @@ const nonBillableBars = svg.selectAll('.nonbillable').data(data).enter().append(
   const barGroupPadding = x.bandwidth() * 0.1;
   const barWidth = barGroupWidth - barGroupPadding;  
   const xAxisGroup = svg.append('g').attr('transform', `translate(0,${height})`).call(xAxis);
-
-  xAxisGroup.selectAll('.tick text')
-    .attr('x', (d) => {
-      const centerPoint = centerPoints.find((c) => c.date === d);
-      return centerPoint.centerX;
-    })
-    .attr('text-anchor', 'middle')
 
   xAxisGroup.select('.domain').remove();
 });

@@ -1,13 +1,8 @@
-# Charting test
-
-
-This repo is used to test out some charting options in Vue. 
+# Testing out d3.js charts using Vue
 
 Base project is setup using vite, vue3 and tailwind.
 
 Chart files can be found within src/components/charts/ 
-
-Starting off with some basic chart options using d3.js
 
 # examples
 

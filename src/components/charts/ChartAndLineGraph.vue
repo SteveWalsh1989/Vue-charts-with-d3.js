@@ -6,61 +6,53 @@ const chart = ref(null);
 
 const data = [
   {
-    date: '2023-10-12',
+    date: '2023-1-12',
     leftOvers: 200,
     goneOff: 50,
-    eaten: 100,
     capacity: 300,
   },
   {
-    date: '2023-10-13',
+    date: '2023-2-13',
     leftOvers: 500,
     goneOff: 100,
-    eaten: 200,
     capacity: 300,
   },
-  { date: '2023-10-14', leftOvers: 400, goneOff: 150, eaten: 0, capacity: 300 },
-  { date: '2023-10-15', leftOvers: 500, goneOff: 200, eaten: 0, capacity: 500 },
+  { date: '2023-3-14', leftOvers: 400, goneOff: 150, capacity: 300 },
+  { date: '2023-4-15', leftOvers: 500, goneOff: 200, capacity: 500 },
   {
-    date: '2023-10-16',
+    date: '2023-5-16',
     leftOvers: 400,
     goneOff: 250,
-    eaten: 350,
     capacity: 500,
   },
   {
-    date: '2023-10-17',
+    date: '2023-6-17',
     leftOvers: 800,
     goneOff: 300,
-    eaten: 500,
     capacity: 700,
   },
   {
-    date: '2023-10-18',
+    date: '2023-7-18',
     leftOvers: 800,
     goneOff: 350,
-    eaten: 600,
     capacity: 700,
   },
   {
-    date: '2023-10-19',
+    date: '2023-8-19',
     leftOvers: 1000,
     goneOff: 400,
-    eaten: 0,
     capacity: 700,
   },
   {
-    date: '2023-10-20',
+    date: '2023-9-20',
     leftOvers: 350,
     goneOff: 450,
-    eaten: 50,
     capacity: 700,
   },
   {
     date: '2023-10-21',
     leftOvers: 600,
     goneOff: 500,
-    eaten: 150,
     capacity: 700,
   },
 ];
@@ -74,10 +66,9 @@ function getOrdinalSuffix(day) {
 }
 function formatDate(dateString) {
   const date = new Date(dateString);
+  const month = date.toLocaleString('en-US', { month: 'short' });
   const day = date.getDate();
-  const options = { month: 'long' };
-  const month = date.toLocaleDateString('en-US', options);
-  const formattedDate = `${day}${getOrdinalSuffix(day)} ${month}`;
+  const formattedDate = `${month}`;
   return formattedDate;
 }
 
@@ -161,18 +152,6 @@ onMounted(() => {
     .attr('height', (d) => height - y(d.goneOff))
     .attr('rx', 4)
     .attr('fill', '#D32F2F');
-  const eatenBars = svg
-    .selectAll('.eaten')
-    .data(data)
-    .enter()
-    .append('rect')
-    .attr('class', 'eaten')
-    .attr('x', (d) => x(d.date) + 10)
-    .attr('y', (d) => y(d.eaten))
-    .attr('width', 15)
-    .attr('height', (d) => height - y(d.eaten))
-    .attr('rx', 4)
-    .attr('fill', '#C5CAE9');
 
   svg
     .append('path')

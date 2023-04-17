@@ -56,17 +56,28 @@ onMounted(() => {
     .domain(data.map((d) => d.date))
     .padding(0.1);
 
-  const y = d3.scaleLinear().range([height, 0]);
 
-  const billableData = data.map((d) => d.billable);
-  const nonBillableData = data.map((d) => d.nonBillable);
-  const maxY = d3.max([...billableData, ...nonBillableData]);
 
-  y.domain([0, maxY]);
+// creating the amount axis
+const billableData = data.map((d) => d.billable);
+const nonBillableData = data.map((d) => d.nonBillable);
+const maxY = d3.max([...billableData, ...nonBillableData]);
+const yTicks = 4;
 
-  const xAxis = d3.axisBottom(x)
-    .tickSize(0)
-    .tickFormat((d) => formatDate(d));
+const y = d3
+  .scaleLinear()
+  .domain([0, maxY])
+  .range([height, 0])
+  .nice(yTicks);
+
+const yAxis = d3.axisLeft(y)
+  .tickSize(0)
+  .ticks(yTicks)
+
+
+const yAxisGroup = svg.append('g').call(yAxis);
+
+yAxisGroup.select('.domain').remove();
 
 const billableBars = svg.selectAll('.billable').data(data).enter().append('rect')
     .attr('class', 'billable')
@@ -85,14 +96,21 @@ const nonBillableBars = svg.selectAll('.nonbillable').data(data).enter().append(
     .attr('fill', '#CFD8DC');
 
 
+  // creating the date axis
+  const xAxis = d3.axisBottom(x)
+    .tickSize(0)
+    .tickFormat((d) => formatDate(d));
+
   const barGroupWidth = x.bandwidth() / 2;
   const barGroupPadding = x.bandwidth() * 0.1;
   const barWidth = barGroupWidth - barGroupPadding;  
   const xAxisGroup = svg.append('g').attr('transform', `translate(0,${height + margin.top})`).call(xAxis);
 
   xAxisGroup.select('.domain').remove();
-});
 
+
+
+});
 </script>
 
 <template>

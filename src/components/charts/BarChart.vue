@@ -194,7 +194,7 @@ onMounted(() => {
 <template>
   <section class="flex">
     <div class="flex-col text-center mx-auto border border-solid rounded">
-      <h2 class="my-4">D3.js - column and overlayed bar chart</h2>
+      <h2 class="my-4">D3.js - column and overlayed bar chart w/ tooltips</h2>
       <div ref="chart"></div>
       <div id="tooltip" style="position: absolute; opacity: 0"></div>
     </div>

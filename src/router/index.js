@@ -1,6 +1,7 @@
 import BasicVerticalBarChart from '../components/charts/BasicVerticalBarChart.vue';
 import BasicHorizontalBarChart from '../components/charts/BasicHorizontalBarChart.vue';
 import BarChart from '../components/charts/BarChart.vue';
+import ChartAndLineGraph from '../components/charts/ChartAndLineGraph.vue';
 
 import { createRouter, createWebHistory } from 'vue-router';
 const routes = [
@@ -23,6 +24,11 @@ const routes = [
     path: '/bar-chart',
     name: 'Bar Charts',
     component: BarChart,
+  },
+  {
+    path: '/chart-with-line-graph',
+    name: 'Chart with line graph',
+    component: ChartAndLineGraph,
   },
 ];
 

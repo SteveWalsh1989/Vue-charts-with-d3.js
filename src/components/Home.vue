@@ -5,10 +5,15 @@ const links = [
     title: 'Vertical Bar Chart',
     link: '/vertical-bar-chart',
   },
-   {
+  {
     id: 2,
     title: 'Horizontal Bar Chart',
     link: '/horizontal-bar-chart',
+  },
+  {
+    id: 3,
+    title: 'Bar Chart',
+    link: '/bar-chart',
   },
 ];
 </script>

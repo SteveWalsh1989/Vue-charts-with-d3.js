@@ -1,5 +1,7 @@
 import BasicVerticalBarChart from '../components/charts/BasicVerticalBarChart.vue';
 import BasicHorizontalBarChart from '../components/charts/BasicHorizontalBarChart.vue';
+import BarChart from '../components/charts/BarChart.vue';
+
 import { createRouter, createWebHistory } from 'vue-router';
 const routes = [
   {
@@ -16,6 +18,11 @@ const routes = [
     path: '/horizontal-bar-chart',
     name: 'Horizontal Charts',
     component: BasicHorizontalBarChart,
+  },
+  {
+    path: '/bar-chart',
+    name: 'Bar Charts',
+    component: BarChart,
   },
 ];
 

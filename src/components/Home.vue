@@ -12,7 +12,7 @@ const links = [
   },
   {
     id: 3,
-    title: 'Complex Vertical Bar Chart',
+    title: 'Vertical Bar Chart',
     link: '/bar-chart',
   },
 ];

@@ -112,11 +112,7 @@ onMounted(() => {
     .tickSize(0)
     .tickFormat((d) => formatDate(d));
 
-  const barGroupWidth = x.bandwidth() / 2;
-  const barGroupPadding = x.bandwidth() * 0.1;
-  const barWidth = barGroupWidth - barGroupPadding;  
   const xAxisGroup = svg.append('g').attr('transform', `translate(0,${height + margin.top})`).call(xAxis);
-
   xAxisGroup.select('.domain').remove();
 
 

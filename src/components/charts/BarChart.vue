@@ -6,15 +6,15 @@ const chart = ref(null);
 
 const data = [
   { date: '2023-04-01', billable: 200, nonBillable: 50, billed: 100 },
-  { date: '2023-04-02', billable: 300, nonBillable: 100, billed: 200 },
+  { date: '2023-04-02', billable: 500, nonBillable: 100, billed: 200 },
   { date: '2023-04-03', billable: 400, nonBillable: 150, billed: 0 },
   { date: '2023-04-04', billable: 500, nonBillable: 200, billed: 0 },
-  { date: '2023-04-05', billable: 600, nonBillable: 250, billed: 400 },
-  { date: '2023-04-06', billable: 700, nonBillable: 300, billed: 500 },
+  { date: '2023-04-05', billable: 400, nonBillable: 250, billed: 350 },
+  { date: '2023-04-06', billable: 800, nonBillable: 300, billed: 500 },
   { date: '2023-04-07', billable: 800, nonBillable: 350, billed: 600 },
-  { date: '2023-04-08', billable: 900, nonBillable: 400, billed: 0 },
-  { date: '2023-04-09', billable: 1000, nonBillable: 450, billed: 800 },
-  { date: '2023-04-10', billable: 1100, nonBillable: 500, billed: 900 },
+  { date: '2023-04-08', billable: 1000, nonBillable: 400, billed: 0 },
+  { date: '2023-04-09', billable: 350, nonBillable: 450, billed: 50 },
+  { date: '2023-04-10', billable: 600, nonBillable: 500, billed: 150 },
 ];
 
 // taken from other project just for date formatting here
@@ -74,10 +74,11 @@ onMounted(() => {
     .enter()
     .append('rect')
     .attr('class', 'billable')
-    .attr('x', (d) => x(d.date))
+    .attr('x', (d) => x(d.date) + 10)
     .attr('y', (d) => y(d.billable))
-    .attr('width', x.bandwidth() / 2 - 5)
+    .attr('width', 15)
     .attr('height', (d) => height - y(d.billable))
+    .attr('rx', 8)
     .attr('fill', '#1976D2');
 
   const nonBillableBars = svg
@@ -88,8 +89,9 @@ onMounted(() => {
     .attr('class', 'nonbillable')
     .attr('x', (d) => x(d.date) + x.bandwidth() / 2 + 1)
     .attr('y', (d) => y(d.nonBillable))
-    .attr('width', x.bandwidth() / 2 - 5)
+    .attr('width', 15)
     .attr('height', (d) => height - y(d.nonBillable))
+    .attr('rx', 8)
     .attr('fill', '#CFD8DC');
 
   const billedBars = svg
@@ -98,10 +100,11 @@ onMounted(() => {
     .enter()
     .append('rect')
     .attr('class', 'billed')
-    .attr('x', (d) => x(d.date) + x.bandwidth() / 1000) // need the super high number here to make it like proper overlay on top of the billed bar, it was a few pixels off when this was 120
+    .attr('x', (d) => x(d.date) + 10)
     .attr('y', (d) => y(d.billed))
-    .attr('width', x.bandwidth() / 2 - 5)
+    .attr('width', 15)
     .attr('height', (d) => height - y(d.billed))
+    .attr('rx', 8)
     .attr('fill', '#EC407A');
 
   // creating the custom part of date x-axis

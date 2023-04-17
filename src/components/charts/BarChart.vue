@@ -57,8 +57,7 @@ onMounted(() => {
     .padding(0.1);
 
 
-
-  // creating the amount axis
+  // creating the amount y-axis
   const billableData = data.map((d) => d.billable);
   const nonBillableData = data.map((d) => d.nonBillable);
   const maxY = d3.max([...billableData, ...nonBillableData]);
@@ -79,6 +78,7 @@ onMounted(() => {
 
   yAxisGroup.select('.domain').remove();
 
+  // main stuff to create the bars and set width/ positions n such 
   const billableBars = svg.selectAll('.billable').data(data).enter().append('rect')
     .attr('class', 'billable')
     .attr('x', (d) => x(d.date))
@@ -100,14 +100,14 @@ onMounted(() => {
     .enter()
     .append('rect')
     .attr('class', 'billed')
-    .attr('x', (d) => x(d.date) + x.bandwidth() / 1000)
+    .attr('x', (d) => x(d.date) + x.bandwidth() / 1000) // need the super high number here to make it like proper overlay on top of the billed bar, it was a few pixels off when this was 120
     .attr('y', (d) => y(d.billed))
     .attr('width', x.bandwidth() / 2 - 5)
     .attr('height', (d) => height - y(d.billed))
     .attr('fill', '#EC407A');
 
 
-  // creating the date axis
+  // creating the custom part of date x-axis
   const xAxis = d3.axisBottom(x)
     .tickSize(0)
     .tickFormat((d) => formatDate(d));

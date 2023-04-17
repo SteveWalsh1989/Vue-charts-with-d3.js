@@ -1,7 +1,17 @@
-# Vue 3 + Vite
+# Charting test
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-## Recommended IDE Setup
+This repo is used to test out some charting options in Vue.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+
+
+Starting off with some basic chart options using d3.js
+![Screenshot 2023-04-17 at 11 02 59](https://user-images.githubusercontent.com/13380603/232453295-99665421-7616-4d2f-a8ea-dca6f7ad113f.png)
+
+
+
+
+# Setup 
+run `npm i` 
+
+run `npm run dev` 

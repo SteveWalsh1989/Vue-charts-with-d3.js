@@ -113,7 +113,7 @@ onMounted(() => {
       const tooltip = d3.select('#tooltip');
       tooltip
         .html(getTooltip(d))
-        .style('opacity', 1)
+        .style('visibility', 'visible')
         .style('background', 'white')
         .style('color', 'black')
         .style('left', `${event.pageX}px`)
@@ -121,7 +121,7 @@ onMounted(() => {
     })
     .on('mouseout', () => {
       const tooltip = d3.select('#tooltip');
-      tooltip.style('opacity', 0);
+      tooltip.style('visibility', 'hidden');
     });
 
   const nonBillableBars = svg
@@ -136,11 +136,11 @@ onMounted(() => {
     .attr('height', (d) => height - y(d.nonBillable))
     .attr('rx', 4)
     .attr('fill', '#CFD8DC')
-    .on('mouseover', (event, d) => {
+    .on('mouseenter', (event, d) => {
       const tooltip = d3.select('#tooltip');
       tooltip
         .html(getTooltip(d))
-        .style('opacity', 1)
+        .style('visibility', 'visible')
         .style('background', 'white')
         .style('color', 'black')
         .style('left', `${event.pageX}px`)
@@ -148,7 +148,7 @@ onMounted(() => {
     })
     .on('mouseout', () => {
       const tooltip = d3.select('#tooltip');
-      tooltip.style('opacity', 0);
+      tooltip.style('visibility', 'hidden');
     });
   const billedBars = svg
     .selectAll('.billed')
@@ -166,7 +166,7 @@ onMounted(() => {
       const tooltip = d3.select('#tooltip');
       tooltip
         .html(getTooltip(d))
-        .style('opacity', 1)
+        .style('visibility', 'visible')
         .style('background', 'white')
         .style('color', 'black')
         .style('left', `${event.pageX}px`)
@@ -174,7 +174,7 @@ onMounted(() => {
     })
     .on('mouseout', () => {
       const tooltip = d3.select('#tooltip');
-      tooltip.style('opacity', 0);
+      tooltip.style('visibility', 'hidden');
     });
 
   // creating the custom part of date x-axis
@@ -196,7 +196,7 @@ onMounted(() => {
     <div class="flex-col text-center mx-auto border border-solid rounded">
       <h2 class="my-4">D3.js - column and overlayed bar chart w/ tooltips</h2>
       <div ref="chart"></div>
-      <div id="tooltip" style="position: absolute; opacity: 0"></div>
+      <div id="tooltip" style="position: absolute; visibility: hidden"></div>
     </div>
   </section>
 </template>
